@@ -3,7 +3,6 @@
   <div class="jumbotron">
     <h1>gCamp</h1>
     <p>Your life, organized.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
   </div>
 
 
@@ -58,3 +57,8 @@
       </div>
     </div>
   </div>
+
+  <% @quotes_hash.each do |name, quote| %>
+    <%= quote %>
+    <%= name %>
+  <% end %>
