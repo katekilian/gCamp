@@ -19,6 +19,21 @@
 
  body { padding-top: 70px; }
 
+ blockquote {
+   padding: 10px 20px;
+   padding-top: 10px;
+   padding-right: 20px;
+   padding-bottom: 10px;
+   padding-left: 0px;
+   margin: 0 0 20px;
+   margin-top: 0px;
+   margin-right: 0px;
+   margin-bottom: 20px;
+   margin-left: 0px;
+   font-size: 17.5px;
+   border-left: 0px;
+ }
+
  .footer {
    clear:both;
    border-top:1px solid #B0B0B0;
