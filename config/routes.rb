@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   get '/terms', to: 'terms#index'
 
+  get '/faq', to: 'faq#index'
+
 end
