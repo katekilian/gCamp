@@ -7,3 +7,5 @@
 <% @tasks.each do |task| %>
   <%= task.description %>
 <% end %>
+<br/>
+<%= link_to "New Task", new_task_path %>
