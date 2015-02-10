@@ -3,7 +3,18 @@
 </div>
 
 <ul>
-  <li>What is gCamp?</li>
-  <li>How do I join gCamp?</li>
-  <li>When will gCamp be finished?</li>
+  <% @common_questions.each do |common_question| %>
+    <li><%= link_to common_question.question, "#" + common_question.slug %></li>
+  <% end %>
 </ul>
+
+<!-- <h3 id=<%= @common_questions.first.slug %>First Question<h3> -->
+
+  <% @common_questions.each do |common_question| %>
+    <h3 id=<%= common_question.slug %>><%= common_question.question %></h3>
+    <!-- <%= common_question.question %> -->
+    <p><%= common_question.answer %></p>
+    <a href="#top">top</a>
+  <% end %>
+
+<!-- <h2 id=<%= @common_questions.first.slug %>>JUMP TO ME!!!</h2> -->
