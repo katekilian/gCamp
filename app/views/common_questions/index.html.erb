@@ -8,13 +8,12 @@
   <% end %>
 </ul>
 
-<!-- <h3 id=<%= @common_questions.first.slug %>First Question<h3> -->
-
-  <% @common_questions.each do |common_question| %>
-    <h3 id=<%= common_question.slug %>><%= common_question.question %></h3>
-    <!-- <%= common_question.question %> -->
-    <p><%= common_question.answer %></p>
-    <a href="#top">top</a>
-  <% end %>
-
-<!-- <h2 id=<%= @common_questions.first.slug %>>JUMP TO ME!!!</h2> -->
+<% @common_questions.each do |common_question| %>
+  <h3 id=<%= common_question.slug %>><%= common_question.question %></h3>
+  <div class="row">
+    <div class="col-md-8"
+      <p><%= common_question.answer %></p>
+    </div>
+  </div>
+  <a href="#top">top</a>
+<% end %>
