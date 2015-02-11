@@ -34,6 +34,11 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    Task.destroy(params[:id])
+    redirect_to tasks_path
+  end
+
   private
 
   def task_params
