@@ -8,6 +8,6 @@ Rails.application.routes.draw do
 
   get '/faq', to: 'common_questions#index'
 
-  resources :tasks, only: [:index, :new, :create]
+  resources :tasks, only: [:index, :new, :create, :show]
 
 end
