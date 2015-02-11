@@ -26,6 +26,14 @@
 
   <div class="container">
 
+    <div id="notice">
+      <% if notice %>
+        <%= notice %>
+        <br/>
+        <br/>
+      <% end %>
+    </div>
+
     <%= yield %>
 
     <footer class="footer">
