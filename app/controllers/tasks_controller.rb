@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to task_path(@task), flash[:notice] = 'Task was sucessfully updated.'
+      redirect_to task_path(@task), notice: 'Task was sucessfully updated.'
     else
       render :edit
     end

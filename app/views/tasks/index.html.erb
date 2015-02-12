@@ -15,14 +15,11 @@
     <% @tasks.each do |task| %>
       <tr>
         <td>
-            <%= link_to task.description, task_path(task) %>
-            <div class="pull-right">
-              <%= link_to "Edit", edit_task_path(task), class: 'btn btn-info text-right' %>
-              <%= link_to "Destroy", task_path(task), method: :delete, class: 'btn btn-danger text-right' %>
-
-            </div>
-            <!-- <%= link_to "Show", task_path(task) %> -->
-
+          <%= link_to task.description, task_path(task) %>
+          <div class="pull-right">
+            <%= link_to "Edit", edit_task_path(task), class: 'btn btn-info text-right' %>
+            <%= link_to "Destroy", task_path(task), method: :delete, class: 'btn btn-danger text-right' %>
+          </div>
         </td>
       </tr>
     <% end %>
