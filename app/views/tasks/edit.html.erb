@@ -2,6 +2,12 @@
   <h1>Edit Task</h1>
 </div>
 
+<ul class="breadcrumb">
+  <li><%= link_to "Tasks", tasks_path, class: "breadcrumb" %></li>
+  <li><%= link_to @task.description, task_path, class: "breadcrumb" %></li>
+  <li class="active">Edit</li>
+</ul>
+
 <%= form_for @task do |f| %>
   <%= f.label :description %>
   <br/>
