@@ -1,1 +1,17 @@
-HI
+<div class="page-header">
+  <h1>New User</h1>
+</div>
+
+<%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
+
+  <div class="field form-group">
+    <%= f.label :first_name, class: "col-sm-2 control-label" %>
+    <div class="col-md-4"><%= f.text_field :first_name, class: 'form-control' %></div>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :last_name, class: "col-sm-2 control-label" %>
+    <div class="col-md-4"><%= f.text_field :last_name, class: 'form-control' %></div>
+  </div>
+
+<% end %>
