@@ -8,4 +8,13 @@
   <li class="active">Edit</li>
 </ul>
 
+<% @task each do |task| %>
+  <% if task.completed = true %>
+    <%= task.description = task.description. %>
+
+  <%= end %>
+<%= end %>
+if checkbox.completed = 1
+# then strikethrough the text
+
 <%= render partial: 'form', locals: { name_of_button: "Update Task"} %>
