@@ -3,18 +3,11 @@
 </div>
 
 <ul class="breadcrumb">
-  <li><%= link_to "Tasks", tasks_path, class: "breadcrumb" %></li>
-  <li><%= link_to @task.description, task_path, class: "breadcrumb" %></li>
+  <li><%= link_to "Tasks", tasks_path %></li>
+  <li><%= link_to @task.description, task_path %></li>
   <li class="active">Edit</li>
 </ul>
 
-<% @task each do |task| %>
-  <% if task.completed = true %>
-    <%= task.description = task.description. %>
 
-  <%= end %>
-<%= end %>
-if checkbox.completed = 1
-# then strikethrough the text
 
 <%= render partial: 'form', locals: { name_of_button: "Update Task"} %>
