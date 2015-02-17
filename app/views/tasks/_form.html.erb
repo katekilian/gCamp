@@ -4,7 +4,16 @@
 
   <div class="field form-group">
     <%= f.label :description, class: "col-sm-2 control-label" %>
-    <div class="col-md-4"><%= f.text_field :description, class: "form-control" %></div>
+    <div class="col-md-4">
+      <%= f.text_field :description, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :due_date , class: "col-sm-2 control-label"%>
+    <div class="col-md-4">
+      <%= f.date_field :due_date, class: "form-control" %>
+    </div>
   </div>
 
   <% unless @task.new_record? %>
@@ -20,5 +29,6 @@
     <div class='col-md-4 col-sm-offset-2'><%= f.submit name_of_button, class: "btn btn-primary" %>
       <%= link_to 'cancel', tasks_path, class: 'btn btn-default' %></div>
   </div>
+
 
 <% end %>
