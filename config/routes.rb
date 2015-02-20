@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :tasks
 
-  resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :users
+
+
 
 end
