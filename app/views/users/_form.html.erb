@@ -1,24 +1,27 @@
+<%= render partial: "shared/errors", locals: { object: @user } %>
+
+
 <%= form_for(@user, html: {class: 'form-horizontal'}) do |f| %>
 
   <div class="field form-group">
     <%= f.label :first_name, class: "col-sm-2 control-label" %>
-    <div class="col-md-4"><%= f.text_field :first_name, class: 'form-control' %></div>
+    <div class="col-md-6"><%= f.text_field :first_name, class: 'form-control' %></div>
   </div>
 
   <div class="field form-group">
     <%= f.label :last_name, class: "col-sm-2 control-label" %>
-    <div class="col-md-4"><%= f.text_field :last_name, class: 'form-control' %></div>
+    <div class="col-md-6"><%= f.text_field :last_name, class: 'form-control' %></div>
   </div>
 
   <div class="field form-group">
     <%= f.label :email, class: "col-sm-2 control-label" %>
-    <div class="col-md-4"><%= f.email_field :email, class: 'form-control' %></div>
+    <div class="col-md-6"><%= f.email_field :email, class: 'form-control' %></div>
   </div>
 
   <div class="actions form-group">
     <div class="col-md-4 col-sm-offset-2">
       <%= f.submit name_of_button, class: "btn btn-primary" %>
-      <%= link_to "cancel", users_path, class: "btn btn-default" %>
+      <%= link_to "Cancel", users_path, class: "btn btn-default" %>
     </div>
   </div>
 
