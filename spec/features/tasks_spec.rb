@@ -1,12 +1,5 @@
 require 'rails_helper'
 
-feature "Something" do
-
-  scenario "things happen" do
-    expect(true).to be(true)
-  end
-end
-
 feature "Tasks" do
 
   scenario "User can see an index of all tasks" do
