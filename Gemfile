@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -35,6 +36,11 @@ gem 'bootstrap-sass', '~> 3.3.3'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+
+  gem 'capybara', '~> 2.4.4'
+
+  gem 'rspec-rails', '~> 3.2.1'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
