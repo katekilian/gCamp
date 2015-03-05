@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   get '/faq', to: 'common_questions#index'
 
-  get 'sign-up', to: 'registrations#new'
+  get 'sign-up', to: 'registrations#new', as: 'sign-up'
 
   resources :tasks
 
