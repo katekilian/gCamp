@@ -14,6 +14,10 @@ Rails.application.routes.draw do
 
   get 'sign-in', to: "authentication#new"
 
+  post 'sign-in', to: "authentication#create"
+
+  get 'sign-out', to: 'authentication#destroy'
+
   resources :tasks
 
   resources :users

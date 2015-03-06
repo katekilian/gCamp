@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature "Tasks" do
 
+  before do
+    login
+  end
+
   scenario "User can see an index of all tasks" do
     visit tasks_path
     expect(page).to have_content "Tasks"
