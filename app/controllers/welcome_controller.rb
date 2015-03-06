@@ -1,5 +1,7 @@
 class WelcomeController < ApplicationController
 
+  skip_before_action :require_login, only: [:index]
+
   def index
     @quotes_hash = {
       'Cayla Hayes' => '"gCamp has changed my life!  It\'s the best tool I\'ve ever used."',
