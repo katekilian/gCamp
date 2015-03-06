@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   post "sign-up", to: "registrations#create"
 
+  get 'sign-in', to: "authentication#new"
+
   resources :tasks
 
   resources :users
