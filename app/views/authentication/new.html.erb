@@ -4,7 +4,14 @@
     <h1>Sign into gCamp</h1>
   </div>
 
+  <% if @sign_in_error %>
+      <div class="text text-danger">
+        <p><strong><%= @sign_in_error %></strong></p>
+      </div>
+  <% end %>
+
   <%= form_tag sign_in_path do %>
+
     <div class="form-group">
       <div class="row">
         <div class="col-md-4 control-label">
