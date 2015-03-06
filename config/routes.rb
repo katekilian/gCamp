@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'sign-up', to: 'registrations#new', as: 'sign-up'
 
+  post "sign-up", to: "registrations#create"
+
   resources :tasks
 
   resources :users
