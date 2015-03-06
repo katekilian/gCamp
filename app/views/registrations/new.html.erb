@@ -5,6 +5,16 @@
     <h1>Sign up for gCamp!</h1>
   </div>
 
+  <% if @user.errors.any? %>
+
+      <% @user.errors.full_messages.each do |msg| %>
+        <ul class="list-unstyled text-danger">
+          <li><strong><%= msg %></strong></li>
+        </ul>
+      <% end %>
+
+  <% end %>
+
   <%= form_for(@user, url: sign_up_path) do |f| %>
     <div class="form-group">
       <div class="row">
