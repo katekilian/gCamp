@@ -4,4 +4,5 @@
     <%= link_to "Delete", project_path(@project ), method: "delete", class: 'btn btn-danger' %>
   </div>
   <h1><%= @project.name %></h1>
+  <%= link_to "#{pluralize(@project.tasks.count, 'task')}" %>
 </div>
