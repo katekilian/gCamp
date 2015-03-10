@@ -11,4 +11,4 @@
   <li class="active"><%= "#{@project.name}" %></li>
 </ul>
 
-<%= link_to "#{pluralize(@project.tasks.count, 'task')}" %>
+<%= link_to "#{pluralize(@project.tasks.count, 'task')}", project_tasks_path(@project, @task) %>
