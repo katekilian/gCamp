@@ -10,7 +10,9 @@
 </div>
 
 <ul class="breadcrumb">
-  <li><%= link_to "Tasks", project_tasks_path %></li>
+  <li><%= link_to "Projects", projects_path %></li>
+  <li><%= link_to "#{@project.name}", project_path(@project) %></li>
+  <li><%= link_to "Tasks", project_tasks_path(@project, @tasks) %></li>
   <li class="active"><%= @task.description %></li>
 </ul>
 
