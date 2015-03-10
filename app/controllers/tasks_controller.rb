@@ -2,43 +2,48 @@ class TasksController < ApplicationController
 
   before_action :require_login
 
+  before_action do
+    @project = Project.find(params[:project_id])
+  end
+
   def index
-    @tasks = Task.all
+    @tasks = @project.tasks
   end
 
   def new
-    @task = Task.new
+    @task = @project.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = @project.tasks.new(task_params)
     if @task.save
-      redirect_to task_path(@task), notice: 'Task was successfully created.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully created.'
     else
       render :new
     end
   end
 
   def show
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
+    @task = @project.tasks.find(params[:id])
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: 'Task was successfully updated.'
+      redirect_to project_task_path(@project, @task), notice: 'Task was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    Task.destroy(params[:id])
-    redirect_to tasks_path
+    project_task = @project.tasks.find(params[:id])
+    project_task.destroy
+    redirect_to project_tasks_path
   end
 
   private
