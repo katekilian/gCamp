@@ -1,8 +1,8 @@
 def create_user(options = {})
   User.create!({
-    first_name: "Kate",
-    last_name: "Quail",
-    email: "kate@example.com",
+    first_name: "Sally",
+    last_name: "Hansen",
+    email: "sally@example.com",
     password: "password",
     password_confirmation: "password"
   }.merge(options))
