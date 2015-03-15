@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
 
+  gem 'pry', '~> 0.10.1'
+
   gem 'capybara', '~> 2.4.4'
 
   gem 'rspec-rails', '~> 3.2.1'
