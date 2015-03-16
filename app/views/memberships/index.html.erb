@@ -4,6 +4,48 @@
 
 <ul class="breadcrumb">
   <li><%= link_to "Projects", projects_path %></li>
-  <li><%= link_to "#{@project.name}", project_path(@project) %></li>
+  <li><%= link_to "Kate's #{@project.name}", project_path(@project) %></li>
   <li class="active">Memberships</li>
 </ul>
+
+<div class="well">
+
+  <%= form_for([@project, @membership], html: {class: 'form-inline'}) do |f| %>
+    <div class="form-group">
+      <%= f.collection_select(:user_id, User.all, :id, :full_name, {prompt: "Please select a user..."}, {class: 'form-control'}) %>
+    </div>
+    <div class="form-group">
+      <%= f.collection_select(:role_id, Role.all, :id, :title, {}, {class: 'form-control'}) %>
+    </div>
+    <div class="actions form-group">
+      <%= f.submit "Add New Member", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+</div>
+
+<% @project.memberships.each do |membership| %>
+
+  <div class="row">
+    <div class="col-md-2">
+      <p><%= link_to "#{membership.user.full_name}" %></p>
+    </div>
+
+    <div class="col-md-1 form-group">
+      <%= form_for([@project, @membership], html: {class: 'form-inline'}) do |f| %>
+        <%= f.collection_select(:role_id, Role.all, :id, :title, {}, {class: 'form-control'}) %>
+    </div>
+
+    <div class="actions form-group col-md-1 col-md-offset-1">
+        <%= f.submit "Update", class: 'btn btn-primary' %>
+    </div>
+      <% end %>
+
+    <div class="actions form-group btn">
+      <%= link_to "", project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove" %>
+        <!-- <span class="glyphicon glyphicon-remove form-group" aria-hidden="true"></span> -->
+
+    </div>
+  </div>
+
+<% end %>

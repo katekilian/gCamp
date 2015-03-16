@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tasks
-    resources :memberships, only: [:index, :new, :create, :update, :destroy]
+    resources :memberships, only: [:index, :show, :new, :create, :update, :destroy]
   end
 
 end

@@ -20,6 +20,11 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def destroy
+    @membership = Membership.destroy(params[:id])
+    redirect_to project_memberships_path
+  end
+
 
   private
 
