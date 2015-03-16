@@ -16,7 +16,7 @@ class MembershipsController < ApplicationController
       flash[:notice] = "#{@project.memberships.last.user.full_name} was successfully added"
       redirect_to project_memberships_path
     else
-      render :new
+      render :index
     end
   end
 
