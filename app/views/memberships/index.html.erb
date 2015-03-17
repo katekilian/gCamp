@@ -46,15 +46,15 @@
       <p><%= link_to "#{membership.user.full_name}" %></p>
     </div>
 
-    <div class="col-md-1 form-group">
-      <%= form_for([@project, membership], html: {class: 'form-inline'}) do |f| %>
+    <%= form_for([@project, membership], html: {class: 'form-inline'}) do |f| %>
+      <div class="col-md-1 form-group">
         <%= f.collection_select(:role_id, Role::ROLES, :to_s, :to_s, {}, {class: 'form-control'}) %>
-    </div>
+      </div>
 
-    <div class="actions form-group col-md-1 col-md-offset-1">
+      <div class="actions form-group col-md-1 col-md-offset-1">
         <%= f.submit "Update", class: 'btn btn-primary' %>
-    </div>
-      <% end %>
+      </div>
+    <% end %>
 
     <div class="actions form-group btn">
       <%= link_to "", project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove" %>
