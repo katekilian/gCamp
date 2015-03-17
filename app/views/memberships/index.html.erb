@@ -47,7 +47,7 @@
     </div>
 
     <div class="col-md-1 form-group">
-      <%= form_for([@project, @membership], html: {class: 'form-inline'}) do |f| %>
+      <%= form_for([@project, membership], html: {class: 'form-inline'}) do |f| %>
         <%= f.collection_select(:role_id, Role::ROLES, :to_s, :to_s, {}, {class: 'form-control'}) %>
     </div>
 
