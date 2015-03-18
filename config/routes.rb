@@ -25,4 +25,8 @@ Rails.application.routes.draw do
     resources :memberships, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   end
 
+  resources :tasks do
+    resources :comments, only: [:new, :create]
+  end
+
 end

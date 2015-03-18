@@ -22,3 +22,35 @@
   <%= @task.due_date.strftime("%m/%d/%Y") %>
 <% end %>
 </p>
+
+<h3>Comments</h3>
+
+  <% @comments.each do |comment| %>
+    <% if comment.user_id %>
+      <div class="row">
+        <div class="col-md-3">
+          <%= link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user) %>
+          <p class="text-muted">
+            <%= time_ago_in_words(comment.created_at) %>
+          </p>
+        </div>
+        <div class="col-md-9">
+          <%= comment.body %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+
+<%= form_for([@task, @comment]) do |f| %>
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-9">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-offset-3 col-md-9">
+      <%= f.submit "Add Comment", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
