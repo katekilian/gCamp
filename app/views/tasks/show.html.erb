@@ -26,19 +26,21 @@
 <h3>Comments</h3>
 
   <% @comments.each do |comment| %>
-    <% if comment.user_id %>
-      <div class="row">
-        <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3">
+        <% if comment.user_id %>
           <%= link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user) %>
-          <p class="text-muted">
-            <%= time_ago_in_words(comment.created_at) %>
-          </p>
-        </div>
-        <div class="col-md-9">
-          <%= comment.body %>
-        </div>
+        <% else %>
+          (deleted user)
+        <% end %>
+            <p class="text-muted">
+              <%= time_ago_in_words(comment.created_at) %>
+            </p>
       </div>
-    <% end %>
+      <div class="col-md-9">
+        <%= comment.body %>
+      </div>
+    </div>
   <% end %>
 
 
