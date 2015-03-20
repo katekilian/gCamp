@@ -33,9 +33,9 @@
         <% else %>
           (deleted user)
         <% end %>
-            <p class="text-muted">
-              <%= time_ago_in_words(comment.created_at) %>
-            </p>
+        <p class="text-muted">
+          <%= time_ago_in_words(comment.created_at) %>
+        </p>
       </div>
       <div class="col-md-9">
         <%= comment.body %>
