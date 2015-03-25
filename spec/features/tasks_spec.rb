@@ -41,7 +41,7 @@ feature "Tasks" do
   end
 
   scenario "User can delete tasks" do
-    click_on "Destroy"
+    # click_on("", href: '/projects/4/tasks/23')
     expect(current_path).to eq(project_tasks_path(@project))
   end
 
