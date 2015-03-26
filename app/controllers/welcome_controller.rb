@@ -1,6 +1,4 @@
-class WelcomeController < ApplicationController
-
-  skip_before_action :require_login, only: [:index]
+class WelcomeController < PublicController
 
   def index
     @quotes_hash = {
