@@ -36,7 +36,6 @@ class MembershipsController < ApplicationController
     redirect_to project_memberships_path
   end
 
-
   private
 
   def membership_params
