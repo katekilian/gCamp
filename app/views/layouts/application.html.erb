@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
   <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
@@ -14,6 +15,23 @@
       <div class="navbar-header">
         <%= link_to "gCamp", root_path, class: "navbar-brand" %>
       </div>
+
+      <ul class="nav navbar-nav dropdown">
+        <li role="presentation" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Project <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <% @projects.each do |project| %>
+              <li><%= link_to "#{project.name}", project_path(project) %></li>
+            <% end %>
+            <li class="divider"></li>
+            <li><%= link_to "New Project", new_project_path %></li>
+          </ul>
+        </li>
+        <li>
+          <%= link_to "Users", users_path %>
+        </li>
+      </ul>
+
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
           <li><%= link_to "#{current_user.first_name} #{current_user.last_name}", user_path(current_user) %></li>
@@ -23,6 +41,7 @@
           <li><%= link_to "Sign In", sign_in_path %></li>
         <% end %>
       </ul>
+
     </div>
 
   </nav>
@@ -44,42 +63,12 @@
     <%= yield %>
 
     <footer class="footer">
-      <div class="left_justify">
-        <% if current_user %>
-          <%= link_to "About", about_path %> |
-          <%= link_to "Terms", terms_path %> |
-          <%= link_to "FAQ", faq_path %> |
-          <%= link_to "Users", users_path %> |
-          <%= link_to "Projects", projects_path %>
-        <% else %>
+      <p class="text-center">
+          <%= link_to "Home", root_path %> |
           <%= link_to "About", about_path %> |
           <%= link_to "Terms", terms_path %> |
           <%= link_to "FAQ", faq_path %>
-        <% end %>
-
-      </div>
-      <div class="right_justify">
-        <div class="badges">
-          <%= link_to "http://www.linkedin.com/in/kathrynkilianvovk/" do %>
-            <%= image_tag("linked_in.jpg", height:'30') %>
-          <% end %>
-        </div>
-        <div class="badges">
-          <%= link_to "https://www.github.com/katekilianvovk" do %>
-            <%= image_tag("GitHub.png", height:'30') %>
-          <% end %>
-        </div>
-        <div class="badges">
-          <%= link_to "https://twitter.com/katekilianvovk" do %>
-            <%= image_tag("Twitter.png", height:'30') %>
-          <% end %>
-        </div>
-        <div class="badges">
-          <%= link_to "https://students.gschool.it/students/285" do %>
-            <%= image_tag("galvanize.png", height:'30') %>
-          <% end %>
-        </div>
-      </div>
+      </p>
     </footer>
 
 

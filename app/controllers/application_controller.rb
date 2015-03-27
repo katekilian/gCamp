@@ -6,9 +6,17 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   before_action :require_login
+  before_action :all_projects
+
 
   def current_user
     User.find_by(id: session[:user_id])
+  end
+
+  def all_projects
+    if current_user
+      @projects = current_user.projects
+    end
   end
 
  private
