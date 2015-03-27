@@ -8,9 +8,9 @@ feature 'Sign in' do
     fill_in "Email", with: user.email
     fill_in "Password", with: user.password
     within("form") { click_on "Sign In"}
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(projects_path)
     expect(page).to have_content "You have successfully signed in"
-    expect(page).to have_content "Penelope Penguin"
+    expect(page).to have_content "Name"
   end
 
   scenario 'User can see validation error messages if fields are missing information' do
