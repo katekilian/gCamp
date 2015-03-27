@@ -17,7 +17,7 @@ feature 'Sign up' do
     fill_in "Password", with: "password"
     fill_in "Password Confirmation", with: "password"
     within("form") { click_on "Sign Up" }
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(new_project_path)
     expect(page).to have_content "You have successfully signed up"
   end
 
