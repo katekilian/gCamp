@@ -26,7 +26,7 @@ feature "Projects" do
     click_link("New Project", match: :first)
     fill_in "Name", with: "Keep a gratitude journal"
     click_on "Create Project"
-    expect(current_path).to eq(project_path(Project.last))
+    expect(current_path).to eq(project_tasks_path(Project.last))
     expect(page).to have_content "Project was successfully created"
   end
 
@@ -57,5 +57,5 @@ feature "Projects" do
     expect(current_path).to eq(projects_path)
     expect(page).to have_content "Project was successfully deleted"
   end
-  
+
 end
