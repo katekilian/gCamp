@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def all_projects
     if current_user
-      @projects = current_user.projects
+      @my_projects = current_user.projects
     end
   end
 
