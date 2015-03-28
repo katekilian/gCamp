@@ -23,7 +23,7 @@ feature "Projects" do
 
   scenario "User can create a new project" do
     visit projects_path
-    click_on "New Project"
+    click_link("New Project", match: :first)
     fill_in "Name", with: "Keep a gratitude journal"
     click_on "Create Project"
     expect(current_path).to eq(project_path(Project.last))
@@ -32,7 +32,7 @@ feature "Projects" do
 
   scenario "User gets error when creating project with empty name" do
     visit projects_path
-    click_on "New Project"
+    click_link("New Project", match: :first)
     fill_in "Name", with: ""
     click_on "Create Project"
     expect(page).to have_content "Name can't be blank"
@@ -57,6 +57,5 @@ feature "Projects" do
     expect(current_path).to eq(projects_path)
     expect(page).to have_content "Project was successfully deleted"
   end
-
-
+  
 end
