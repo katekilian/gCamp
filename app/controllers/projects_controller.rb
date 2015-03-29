@@ -1,11 +1,13 @@
 class ProjectsController < ApplicationController
 
+  before_action :find_project, only: [:show, :edit, :update]
+  before_action :restrict_project_access, only: [:show]
+
   def index
     @projects = Project.all
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def new
@@ -23,11 +25,9 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     if @project.update(project_params)
       redirect_to project_path(@project), notice: "Project was successfully updated"
     else
@@ -45,6 +45,17 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def find_project
+    @project = Project.find(params[:id])
+  end
+
+  def restrict_project_access
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:error] = "You do not have access to this project"
+      redirect_to projects_path
+    end
   end
 
 end
