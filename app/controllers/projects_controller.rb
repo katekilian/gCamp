@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
 
-  before_action :find_project, only: [:show, :edit, :update]
+  before_action :find_project, only: [:show, :edit, :update, :destroy]
+  before_action :member_must_be_owner, only: [:edit, :update, :destroy]
   before_action :restrict_project_access, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -49,6 +50,13 @@ class ProjectsController < ApplicationController
 
   def find_project
     @project = Project.find(params[:id])
+  end
+
+  def member_must_be_owner
+    unless current_user.is_owner?(@project) #unless this is true
+      flash[:error] = 'You do not have access'
+      redirect_to project_path(@project)
+    end
   end
 
   def restrict_project_access
