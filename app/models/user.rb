@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   end
 
   def is_owner?(project)
-    self.memberships.find_by(project_id: project.id).role_id == 1
+    self.memberships.find_by(project_id: project.id) && self.memberships.find_by(project_id: project.id).role_id == 1
   end
 
 end
