@@ -3,6 +3,7 @@ class TasksController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
+  before_action :restrict_task_access
 
   def index
     @tasks = @project.tasks
@@ -50,6 +51,13 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:description, :completed, :due_date)
+  end
+
+  def restrict_task_access
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:error] = "You do not have access to that project"
+      redirect_to projects_path
+    end
   end
 
 end
