@@ -45,4 +45,8 @@ feature "Tasks" do
     expect(current_path).to eq(project_tasks_path(@project))
   end
 
+  scenario "User cannot see tasks for projects of which they are not a member" do
+    # fill in with code
+  end
+
 end
