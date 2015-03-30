@@ -3,7 +3,7 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
-  before_action :member_must_be_owner
+  before_action :member_must_be_owner, except: [:index]
 
   def index
     @memberships = @project.memberships.all
