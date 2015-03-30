@@ -3,6 +3,7 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
+  before_action :member_must_be_owner
 
   def index
     @memberships = @project.memberships.all
@@ -39,6 +40,13 @@ class MembershipsController < ApplicationController
 
   def membership_params
     params.require(:membership).permit(:project_id, :user_id, :role_id)
+  end
+
+  def member_must_be_owner
+    unless current_user.is_owner?(@project) #unless this is true
+      flash[:error] = 'You do not have access'
+      redirect_to project_path(@project)
+    end
   end
 
 end
