@@ -58,4 +58,11 @@ feature "Projects" do
     expect(page).to have_content "Project was successfully deleted"
   end
 
+  scenario "User cannot see projects of which they are not a member" do
+    # project = Project.create!(name: "You shouldn't see this")
+    # membership = Membership.create!(project_id: project.id, user_id: I could use an object creation method to make a user that is not the logged in user in the before action.)
+    # visit root_path
+    # click_on "Projects"
+  end
+
 end
