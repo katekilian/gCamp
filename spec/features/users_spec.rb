@@ -3,8 +3,8 @@ require "rails_helper"
 feature "Tasks" do
 
   before do
-    login
     @user = User.create!(first_name: "Charlie", last_name: "Chaplin", email: "charliechaplin@example.com", password: "password")
+    login(@user)
   end
 
   scenario "User can see an index of all users" do
@@ -16,7 +16,7 @@ feature "Tasks" do
 
   scenario "User can see an individual user" do
     visit users_path
-    click_on "Charlie Chaplin"
+    click_on("Charlie Chaplin", match: :first)
     expect(current_path).to eq(user_path(@user))
     expect(page).to have_content "Edit"
   end
@@ -42,7 +42,7 @@ feature "Tasks" do
 
   scenario "User can edit and update a user" do
     visit users_path
-    click_on "Charlie Chaplin"
+    click_on("Charlie Chaplin", match: :first)
     click_on "Edit"
     fill_in "First Name", with: "Charles"
     fill_in "Last Name", with: "Chaplain"
@@ -54,11 +54,11 @@ feature "Tasks" do
 
   scenario "User can delete users" do
     visit users_path
-    click_on "Charlie Chaplin"
+    click_on("Charlie Chaplin", match: :first)
     click_on "Edit"
     click_on "Delete User"
-    expect(current_path).to eq(users_path)
-    expect(page).to have_content "User was successfully deleted"
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content "Your life, organized."
   end
 
   after do
