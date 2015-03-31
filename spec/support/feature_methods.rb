@@ -8,7 +8,10 @@ def login(user = create_user)
 end
 
 def goto_project_tasks_index
+  @user = create_user
+  login(@user)
   @project = create_project
-  @task = create_task
+  create_owner_membership(@project, @user)
+  @task = create_task(@project)
   visit project_tasks_path(@project)
 end

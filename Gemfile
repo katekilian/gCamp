@@ -37,6 +37,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
 
+  gem 'launchy', '~> 2.4.3'
+
   gem 'pry', '~> 0.10.1'
 
   gem 'capybara', '~> 2.4.4'

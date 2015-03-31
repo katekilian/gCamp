@@ -3,7 +3,8 @@ require 'rails_helper'
 feature "Projects" do
 
   before do
-    login
+    @user = create_user
+    login(@user)
   end
 
   scenario "User can see a list of all projects" do
@@ -14,8 +15,9 @@ feature "Projects" do
 
   scenario "User can see an individual project" do
     project = Project.create!(name: "Keep a gratitude journal")
+    create_owner_membership(project, @user)
     visit projects_path
-    click_on "Keep a gratitude journal"
+    click_on("Keep a gratitude journal", match: :first)
     expect(current_path).to eq(project_path(project))
     expect(page).to have_content "Edit"
     expect(page).to have_content "Delete"
@@ -40,8 +42,9 @@ feature "Projects" do
 
   scenario "User can edit and update a project" do
     project = Project.create!(name: "Keep a gratitude journal")
+    create_owner_membership(project, @user)
     visit projects_path
-    click_on "Keep a gratitude journal"
+    click_on("Keep a gratitude journal", match: :first)
     click_on "Edit"
     expect(current_path).to eq(edit_project_path(project))
     fill_in "Name", with: "Keep a DAILY gratitude journal"
@@ -52,6 +55,7 @@ feature "Projects" do
 
   scenario "User can delete projects" do
     project = Project.create!(name: "Keep a gratitude journal")
+    create_owner_membership(project, @user)
     visit project_path(project)
     click_on "Delete"
     expect(current_path).to eq(projects_path)
@@ -59,6 +63,8 @@ feature "Projects" do
   end
 
   scenario "User cannot see projects of which they are not a member" do
+    # project = Project.create!(name: "You shouldn't see this")
+
     # project = Project.create!(name: "You shouldn't see this")
     # membership = Membership.create!(project_id: project.id, user_id: I could use an object creation method to make a user that is not the logged in user in the before action.)
     # visit root_path
