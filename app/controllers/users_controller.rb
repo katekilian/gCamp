@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :only_change_own_user_profile, only: [:edit, :update, :destroy]
+
   def index
     @users = User.all
   end
@@ -43,6 +45,13 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def only_change_own_user_profile
+    @user = User.find(params[:id])
+    unless current_user.id == @user.id
+      render file: 'public/404.html', status: :not_found, layout: false
+    end
   end
 
 end

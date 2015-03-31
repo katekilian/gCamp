@@ -26,9 +26,11 @@
         <%= mail_to user.email %>
       </td>
       <td>
-        <div class="pull-right">
-          <%= link_to "edit", edit_user_path(user) %>
-        </div>
+        <% if current_user.id == user.id %>
+          <div class="pull-right">
+            <%= link_to "Edit", edit_user_path(user) %>
+          </div>
+        <% end %>
       </td>
     </tr>
     <% end %>
