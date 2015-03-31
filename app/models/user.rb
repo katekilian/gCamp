@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     self.memberships.find_by(project_id: project.id) && self.memberships.find_by(project_id: project.id).role_id == 1
   end
 
+  def is_member?(membership)
+    self.id == membership.user_id
+  end
+
 end

@@ -3,7 +3,8 @@ class MembershipsController < ApplicationController
   before_action do
     @project = Project.find(params[:project_id])
   end
-  before_action :member_must_be_owner, except: [:index]
+  before_action :member_must_be_owner, except: [:index, :destroy]
+  before_action :member_to_access_destroy, only: [:destroy]
 
   def index
     @memberships = @project.memberships.all
@@ -46,6 +47,14 @@ class MembershipsController < ApplicationController
     unless current_user.is_owner?(@project) #unless this is true
       flash[:error] = 'You do not have access'
       redirect_to project_path(@project)
+    end
+  end
+
+  def member_to_access_destroy
+    @membership = Membership.find(params[:id])
+    unless current_user.is_member?(@membership)
+      flash[:error] = "You do not have access"
+      redirect_to projects_path
     end
   end
 

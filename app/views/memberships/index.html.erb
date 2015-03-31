@@ -61,9 +61,12 @@
       </div>
     <% else %>
       <% if membership.role_id == 1 %>
-        <%= "owner" %>
+        <p class="col-md-2">owner</p>
       <% else %>
-        <%= "member" %>
+        <p class="col-md-2">member</p>
+      <% end %>
+      <% if current_user.id == membership.user_id %>
+        <%= link_to "", project_membership_path(@project, membership), method: :delete, class: "glyphicon glyphicon-remove" %>
       <% end %>
     <% end %>
   </div>
