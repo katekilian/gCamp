@@ -23,7 +23,9 @@
         <%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %>
       </td>
       <td>
-        <%= mail_to user.email %>
+        <% if current_user.id == user.id %>
+          <%= mail_to user.email %>
+        <% end %>
       </td>
       <td>
         <% if current_user.id == user.id %>
