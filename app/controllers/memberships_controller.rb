@@ -5,6 +5,7 @@ class MembershipsController < ApplicationController
   end
   before_action :member_must_be_owner, except: [:index, :destroy]
   before_action :member_to_access_destroy, only: [:destroy]
+  before_action :check_last_owner, only: [:update, :destroy]
 
   def index
     @memberships = @project.memberships.all
@@ -58,6 +59,12 @@ class MembershipsController < ApplicationController
     end
   end
 
-end
+  def check_last_owner
+    @membership = @project.memberships.find(params[:id])
+    if @membership.role_id == 1 && @project.memberships.where(role_id: 1).count == 1
+      flash[:error] = 'Projects must have at least one owner'
+      redirect_to project_memberships_path
+    end
+  end
 
-# I need to create a full_name method inside the User model.
+end
