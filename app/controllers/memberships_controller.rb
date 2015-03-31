@@ -35,7 +35,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership = Membership.destroy(params[:id])
     flash[:notice] = "#{@membership.user.full_name} was successfully removed"
-    redirect_to project_memberships_path
+    redirect_to projects_path
   end
 
   private
