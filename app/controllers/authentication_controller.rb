@@ -9,7 +9,7 @@ class AuthenticationController < PublicController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "You have successfully signed in"
-      redirect_to projects_path
+      redirect_to session[:previous_url] || projects_path
     else
       @sign_in_error = "Email / Password combination is invalid"
       render :new
@@ -17,7 +17,7 @@ class AuthenticationController < PublicController
   end
 
   def destroy
-    session[:user_id] = nil
+    session.clear
     flash[:notice] = "You have successfully signed out"
     redirect_to root_path
   end

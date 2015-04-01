@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
  def require_login
    unless current_user
+     session[:previous_url] = request.url
      flash[:error] = "You must sign in"
      redirect_to sign_in_path # halts request cycle
    end
