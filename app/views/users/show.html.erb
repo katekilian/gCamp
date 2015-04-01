@@ -13,7 +13,7 @@
   <dd><%= @user.first_name %></dd>
   <dt>Last Name</dt>
   <dd><%= @user.last_name %></dd>
-  <% if current_user.id == @user.id %>
+  <% if current_user.id == @user.id || current_user.co_member?(@user) %>
     <dt>Email</dt>
     <dd> <%= mail_to @user.email %> </dd>
   <% end %>

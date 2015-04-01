@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     self.admin == true
   end
 
+  def co_member?(user)
+    user.projects.map { |project| project.users }.flatten.include?(self)
+  end
+
   # def admin_rights
   #   unless self.is_admin?
   #     errors.add(:admin, message: "You do not have administrative privileges")
