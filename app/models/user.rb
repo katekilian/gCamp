@@ -30,10 +30,12 @@ class User < ActiveRecord::Base
     user.projects.map { |project| project.users }.flatten.include?(self)
   end
 
-  # def admin_rights
-  #   unless self.is_admin?
-  #     errors.add(:admin, message: "You do not have administrative privileges")
-  #   end
-  # end
+  def tracker_token
+    unless self.token == nil
+      "#{token[0..3]}***********************"
+    end
+  end
+
+
 
 end
