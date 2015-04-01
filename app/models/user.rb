@@ -15,11 +15,11 @@ class User < ActiveRecord::Base
   end
 
   def is_owner?(project)
-    self.memberships.find_by(project_id: project.id) && self.memberships.find_by(project_id: project.id).role_id == 1
+    self.memberships.find_by(project_id: project.id) && self.memberships.find_by(project_id: project.id).role_id == 1 || self.is_admin?
   end
 
   def is_member?(membership)
-    self.id == membership.user_id
+    self.id == membership.user_id || self.is_admin?
   end
 
   def is_admin?

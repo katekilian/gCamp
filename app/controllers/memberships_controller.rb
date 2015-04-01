@@ -69,7 +69,7 @@ class MembershipsController < ApplicationController
   end
 
   def restrict_project_memberships_access
-    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id)) || current_user.is_admin?
       flash[:error] = "You do not have access to this project"
       redirect_to projects_path
     end

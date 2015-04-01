@@ -54,7 +54,7 @@ class TasksController < ApplicationController
   end
 
   def restrict_task_access
-    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id)) || current_user.is_admin?
       flash[:error] = "You do not have access to that project"
       redirect_to projects_path
     end

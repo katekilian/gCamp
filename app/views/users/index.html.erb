@@ -23,12 +23,12 @@
         <%= link_to "#{user.first_name} #{user.last_name}", user_path(user) %>
       </td>
       <td>
-        <% if current_user.id == user.id %>
+        <% if current_user.id == user.id || current_user.is_admin? %>
           <%= mail_to user.email %>
         <% end %>
       </td>
       <td>
-        <% if current_user.id == user.id %>
+        <% if current_user.id == user.id || current_user.is_admin? %>
           <div class="pull-right">
             <%= link_to "Edit", edit_user_path(user) %>
           </div>

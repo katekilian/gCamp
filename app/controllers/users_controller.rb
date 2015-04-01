@@ -37,9 +37,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.destroy(params[:id])
-    session.clear
-    redirect_to root_path
+    user = User.find(params[:id])
+    if current_user.id == user.id
+      User.destroy(params[:id])
+      session.clear
+      redirect_to root_path
+    else
+      User.destroy(params[:id])
+      redirect_to users_path 
+    end
   end
 
   private
@@ -54,7 +60,7 @@ class UsersController < ApplicationController
 
   def only_change_own_user_profile
     @user = User.find(params[:id])
-    unless current_user.id == @user.id
+    unless current_user.id == @user.id || current_user.is_admin?
       render file: 'public/404.html', status: :not_found, layout: false
     end
   end

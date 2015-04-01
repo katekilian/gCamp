@@ -5,7 +5,11 @@ class ProjectsController < ApplicationController
   before_action :restrict_project_access, only: [:show, :edit, :update, :destroy]
 
   def index
-    @projects = Project.all
+    if current_user.is_admin?
+      @projects = Project.all
+    else
+      @projects = current_user.projects
+    end
   end
 
   def show
@@ -60,7 +64,7 @@ class ProjectsController < ApplicationController
   end
 
   def restrict_project_access
-    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id)) || current_user.is_admin?
       flash[:error] = "You do not have access to this project"
       redirect_to projects_path
     end
