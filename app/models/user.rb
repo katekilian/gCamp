@@ -22,4 +22,14 @@ class User < ActiveRecord::Base
     self.id == membership.user_id
   end
 
+  def is_admin?
+    self.admin == true
+  end
+
+  # def admin_rights
+  #   unless self.is_admin?
+  #     errors.add(:admin, message: "You do not have administrative privileges")
+  #   end
+  # end
+
 end
