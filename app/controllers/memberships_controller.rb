@@ -6,6 +6,7 @@ class MembershipsController < ApplicationController
   before_action :member_must_be_owner, except: [:index, :destroy]
   before_action :member_to_access_destroy, only: [:destroy]
   before_action :check_last_owner, only: [:update, :destroy]
+  before_action :restrict_project_memberships_access
 
   def index
     @memberships = @project.memberships.all
@@ -64,6 +65,13 @@ class MembershipsController < ApplicationController
     if @membership.role_id == 1 && @project.memberships.where(role_id: 1).count == 1
       flash[:error] = 'Projects must have at least one owner'
       redirect_to project_memberships_path
+    end
+  end
+
+  def restrict_project_memberships_access
+    unless @project.memberships.include?(current_user.memberships.find_by(project_id: @project.id))
+      flash[:error] = "You do not have access to this project"
+      redirect_to projects_path
     end
   end
 
