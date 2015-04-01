@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       User.destroy(params[:id])
-      redirect_to users_path 
+      redirect_to users_path
     end
   end
 
@@ -52,9 +52,9 @@ class UsersController < ApplicationController
 
   def user_params
     if current_user.is_admin?
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin, :token)
     else
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :token)
     end
   end
 
