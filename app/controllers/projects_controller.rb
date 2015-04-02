@@ -12,6 +12,14 @@ class ProjectsController < ApplicationController
     end
     tracker_api = TrackerAPI.new
     @tracker_projects = tracker_api.projects(current_user.token)
+    if current_user.token
+      if tracker_api.projects(current_user.token).class == Array
+        @tracker_projects = tracker_api.projects(current_user.token)
+      else
+        flash[:error] = "Your token is invalid. Please enter a valid tracker token."
+        @tracker_projects = {}
+      end
+    end
   end
 
   def show
