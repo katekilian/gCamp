@@ -3,15 +3,29 @@ require "rails_helper"
 describe ProjectsController do
 
   let(:user) { create_user(first_name: "User", admin: false) }
+  let(:admin) { create_user(first_name: "User", admin: true, email: "blah@example.com") }
   let(:project) { create_project }
+  let(:project2) { create_project }
 
   describe "GET #index" do
-    it "shows all projects" do
-      session[:user_id] = user.id
+    it "shows everyone's projects to admin" do
+      session[:user_id] = admin.id
+      create_owner_membership(project, user)
 
       get :index
 
       expect(assigns(:projects)).to eq(Project.all)
+      expect(response).to render_template(:index)
+    end
+
+    it "shows current user's list of projects" do
+      session[:user_id] = user.id
+      create_owner_membership(project, user)
+      create_owner_membership(project2, admin)
+
+      get :index
+
+      expect(assigns(:projects)).to eq([project])
       expect(response).to render_template(:index)
     end
   end
