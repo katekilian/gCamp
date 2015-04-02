@@ -34,10 +34,12 @@
     </tr>
   </thead>
   <tbody>
+    <% if current_user.token %>
     <% @tracker_projects.each do |project| %>
     <tr>
       <th><%= link_to project[:name], tracker_path(project[:id], name: project[:name]) %></th>
     </tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>
