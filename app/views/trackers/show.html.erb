@@ -1,0 +1,36 @@
+<div class="page-header">
+  <div class="pull-right">
+    <p>(showing first 500)</p>
+  </div>
+  <h1><%= "Stories for #{@project_name}" %></h1>
+  <%= @params_id %>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-md-6">Story</th>
+      <th>Estimate</th>
+      <th>Labels</th>
+      <th>Current State</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tracker_stories[0..499].each do |story| %>
+    <tr>
+      <td><%= link_to story[:name], "#{story[:url]}" %></td>
+      <td> <%= story[:estimate] %> </td>
+      <td>
+        <% story[:labels].each do |label| %>
+          <% if label == story[:labels].last %>
+            <%= label[:name] %>
+          <% else %>
+            <%= "#{label[:name]}," %>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= story[:current_state] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

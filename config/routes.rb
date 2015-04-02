@@ -29,4 +29,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create]
   end
 
+  resources :trackers, only: [:show]
+
 end
