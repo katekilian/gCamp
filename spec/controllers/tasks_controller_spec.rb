@@ -53,7 +53,9 @@ describe TasksController do
       session[:user_id] = user.id
       create_owner_membership(project, user)
 
-      patch :update, id: task.id, task: {name: "Have lots of fun forever and ever"}
+      patch :update, project_id: project.id, id: task.id, task: {name: "Have lots of fun forever and ever"}
+
+      expect(response).to redirect_to project_task_path(project, task)
     end
 
   end
