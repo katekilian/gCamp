@@ -1,0 +1,44 @@
+
+
+/* Code Under This Line */
+
+.columns:before,
+.columns:after {
+  content:"";
+  display:table;
+}
+.columns:after {
+  clear:both;
+}
+.columns {
+  zoom:1;
+  overflow: hidden;
+}
+
+.column {
+  float: left;
+}
+
+.two.columns .column, .column-two {
+  width: 50%;
+}
+
+.columns.three .column, .column-three {
+  width: 33.33333%;
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+}
+
+.four.columns .column, .column.column-four {
+  width: 25%;
+}
+
+.twelve.columns .column, .column.column-twelve {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
+/* CODE UNDER THIS LINE */
