@@ -59,11 +59,13 @@
     </div>
   </div>
 
-  <% @quotes_hash.each do |name, quote| %>
-    <blockquote>
-      <p><%= quote %></p>
-      <footer><em><%= name %></em></footer>
-    </blockquote>
-    <!-- <p><%= quote %></p>
-    <p class="text-muted"><%= name %></p> -->
-  <% end %>
+  <div class="column column-twelve">
+    <% @quotes_hash.each do |name, quote| %>
+      <blockquote>
+        <p><%= quote %></p>
+        <footer><em><%= name %></em></footer>
+      </blockquote>
+      <!-- <p><%= quote %></p>
+      <p class="text-muted"><%= name %></p> -->
+    <% end %>
+  </div>
